@@ -1,2 +1,9 @@
 "Halt and Catch Fire!"
-@all_store_items
+@all_store_items.map do |dice|
+  {
+    name: dice.name,
+    cost: dice.price,
+    image: dice.url,
+    description: dice.description,
+  }
+end
