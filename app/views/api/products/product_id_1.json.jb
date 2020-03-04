@@ -1,0 +1,4 @@
+{
+  name: @product1.name,
+  description: @product1.description,
+}
