@@ -3,7 +3,7 @@
   {
     name: dice.name,
     cost: dice.price,
-    image: dice.url,
+    image: dice.image_url,
     description: dice.description,
   }
 end
