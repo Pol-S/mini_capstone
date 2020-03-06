@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     get "/products/:id" => "products#product_retrieve"
     post "/products" => "products#create"
     patch "/products/:id" => "products#update"
+    delete "/products/:id" => "products#destroy"
   end
 end
