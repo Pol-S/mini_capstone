@@ -1,5 +1,6 @@
 @all_store_items.map do |dice|
   {
+    id: dice.id,
     name: dice.name,
     price: dice.price,
     image: dice.image_url,
