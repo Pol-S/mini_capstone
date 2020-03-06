@@ -1,4 +1,3 @@
-"Halt and Catch Fire!"
 @all_store_items.map do |dice|
   {
     name: dice.name,
