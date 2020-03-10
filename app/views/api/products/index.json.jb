@@ -3,6 +3,8 @@
     id: dice.id,
     name: dice.name,
     price: dice.price,
+    # tax: dice.tax,
+    # total: dice.total,
     image_url: dice.image_url,
     description: dice.description,
   }
