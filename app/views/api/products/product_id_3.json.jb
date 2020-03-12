@@ -1,4 +1,0 @@
-{
-  name: @product3.name,
-  description: @product3.description,
-}

@@ -1,6 +1,23 @@
 class Api::ProductsController < ApplicationController
   def index
     @all_store_items = Product.all
+
+    if params[:search]
+      @all_store_items = Product.where("name ILIKE ?", "%#{params[:search]}%")
+    end
+
+    if params[:discount]
+      @all_store_items = Product.where("price < 15")
+    end
+
+    if params[:sort]
+      if params[:sort_order]
+        @all_store_items = @all_store_items.order(params[:sort] => params[:sort_order])
+      end
+    else
+      @all_store_items = @all_store_items.order(:id)
+    end
+
     render "index.json.jb"
   end
 

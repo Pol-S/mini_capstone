@@ -1,10 +1,3 @@
-@all_store_items.map do |dice|
-  {
-    id: dice.id,
-    name: dice.name,
-    price: dice.price,
-
-    image_url: dice.image_url,
-    description: dice.description,
-  }
+@all_store_items.map do |product|
+  render partial: "product.json.jb", locals: { product: product }
 end
