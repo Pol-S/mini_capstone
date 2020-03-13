@@ -1,0 +1,2 @@
+class RemoveImageUrlfromProduct < ApplicationRecord
+end
