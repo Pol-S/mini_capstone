@@ -2,7 +2,7 @@
   id: product.id,
   name: product.name,
   price: product.price,
-  image_url: Image.where(product_id: product.id),
+  images: product.images,
   description: product.description,
   supplier: product.supplier,
 }

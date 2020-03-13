@@ -30,7 +30,7 @@ class Api::ProductsController < ApplicationController
     })
 
     if @product.save
-      Image.create({ url: params[:image_url], product_id: @product.id })
+      Image.create({ url: params[:images], product_id: @product.id })
       render "show.json.jb"
     else
       render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
@@ -48,7 +48,7 @@ class Api::ProductsController < ApplicationController
     @product.name = params[:name] || @product.name
     @product.price = params[:price] || @product.price
 
-    Image.create ({ url: params[:image_url], product_id: params[:id] })
+    Image.create ({ url: params[:images], product_id: params[:id] })
     @product.description = params[:description] || @product.description
     if @product.save
       render "show.json.jb"
