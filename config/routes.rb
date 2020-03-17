@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
     post "/sessions" => "sessions#create" #sometimes called login
 
+    post "/orders" => "orders#create"
+
     get "/products" => "products#index"
     get "/products/:id" => "products#product_retrieve"
     post "/products" => "products#create"
