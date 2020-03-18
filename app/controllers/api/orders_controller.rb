@@ -1,16 +1,33 @@
 class Api::OrdersController < ApplicationController
-  #Note that an order has the following attributes: user_id, product_id, quantity, subtotal, tax, and total. Assume the user will provide the product id and quantity in params. For now, only save the user_id, product_id, and quantity (we’ll come back to the remaining attributes in a bit).
+  before_action :authenticate_user
+
+  def index
+    if current_user
+      @all_orders = Order.all
+      render "index.json.jb"
+    else
+      render json: {}, status: :unauthorized
+    end
+  end
+
   def create
-    @order = Order.new({
+    @order = Order.new(
+
       user_id: current_user.id,
       product_id: params[:product_id],
       quantity: params[:quantity],
-      subtotal: Product.find_by(id: params[:product_id]).price,
-      tax: Product.find_by(id: params[:product_id]).tax,
-      total: Product.find_by(id: params[:product_id]).total,
+      subtotal: params[:subtotal],
+      tax: params[:tax],
+      total: params[:total],
+      # subtotal: Product.find_by(id: params[:product_id]).price * params[:quantity].to_i,
+      # tax: Product.find_by(id: params[:product_id]).tax * params[:quantity].to_i,
+      # total: Product.find_by(id: params[:product_id]).total * params[:quantity].to_i,
 
-    })
-    @order.save
-    render "show.json.jb"
+    )
+    if @order.save
+      render "show.json.jb"
+    else
+      render json: { message: "Problem" }
+    end
   end
 end
