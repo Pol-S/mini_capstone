@@ -11,14 +11,24 @@ class Api::OrdersController < ApplicationController
   end
 
   def create
+    carted_products = current_user.carted_products.where(status: "carted")
+    calc_subtotal = 0
+    calc_tax = 0
+    calc_total = 0
+
+    carted_products.each do |carted_product|
+      {
+        calc_subtotal += carted_product.product.price
+        calc_tax += carted_product.product.tax
+      }
+    end
+
     @order = Order.new(
 
       user_id: current_user.id,
-      product_id: params[:product_id],
-      quantity: params[:quantity],
-      subtotal: Product.find_by(id: params[:product_id]).price * params[:quantity].to_i,
-      tax: Product.find_by(id: params[:product_id]).tax * params[:quantity].to_i,
-      total: Product.find_by(id: params[:product_id]).total * params[:quantity].to_i,
+      subtotal: 0,
+      tax: 0,
+      total: 0,
 
     )
     if @order.save
